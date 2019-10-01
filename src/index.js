@@ -103,12 +103,15 @@ const expressionCalculator = (inputExpr) => {
         }
         return c;
     },0);
-    //console.log(checkBrackets, begin, end, expr.slice(begin + 1, begin + end));
-    if (checkBrackets !== 0) {
+    console.log(checkBrackets, begin, end, expr.slice(begin + 1, begin + end));
+    if ((checkBrackets !== 0)) {
+        throw "ExpressionError: Brackets must be paired";
+    }
+    if (end === -1 && begin !== -1) {
         throw "ExpressionError: Brackets must be paired";
     }
     let result;
-    //console.log('expr: ', expr.slice(begin + 1, end));
+    console.log('expr: ', expr.slice(begin + 1, end));
     if (begin >= 0 && end >= 0) {
         const slc = expr.slice(begin + 1, begin + end);
         const simpleResult = calcSimpleExpression(slc);
@@ -119,7 +122,7 @@ const expressionCalculator = (inputExpr) => {
     else {
         result = calcSimpleExpression(expr);
     }
-    //console.log('result: ', result);
+    console.log('result: ', result, typeof result);
     return result
 }
 
@@ -129,7 +132,7 @@ const expressionCalculator = (inputExpr) => {
 //console.log(sub("5-2"))
 
 //const r = sum("10/2*-10 + 1+5*-2");
-//const r = calcSimpleExpression("62 + 69 - 22 + 21");
+//const r = expressionCalculator("62 + )69 - 22( + 21");
 //console.log(r, typeof r);
 //console.log(expressionCalculator(exp));
 
